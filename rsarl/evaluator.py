@@ -51,7 +51,7 @@ def evaluation(env, agent, n_requests: int) -> tuple:
     return logs
 
 
-def batch_evaluation(vec_env, agent, n_requests: int) -> tuple:
+def batch_evaluation(vec_env, agent, n_requests: int,s,d,bandwidth) -> tuple:
     """
     """
     experience_lists = defaultdict(lambda: [])
@@ -59,7 +59,7 @@ def batch_evaluation(vec_env, agent, n_requests: int) -> tuple:
     # Generate requests
     for req_id in range(n_requests):
         # Get action from observation
-        acts = agent.batch_act(obss)
+        acts = agent.batch_act(obss,s,d,bandwidth)
         # Do action and get next state
         _, rewards, dones, infos = vec_env.step(acts)
         # Store log
@@ -88,13 +88,13 @@ def warming_up(env, agent, n_requests: int):
             obs = env.reset()
 
 
-def batch_warming_up(vec_env, agent, n_requests: int):
+def batch_warming_up(vec_env, agent, n_requests: int,s,d,bandwidth):
     """
     """
     obss = vec_env.last_obs
     for _ in range(n_requests):
         # Get action from observation
-        acts = agent.batch_act(obss)
+        acts = agent.batch_act(obss,s,d,bandwidth)
         # Do action and get next state
         obss, _, dones, _ = vec_env.step(acts)
         # create mask to reset
