@@ -109,6 +109,6 @@ class KSPDRLAgent(KSPAgent):
     def batch_act(self, batch_obs,s,d,bandwidth):
         obs = [self.preprocess(o) for o in batch_obs]
         drl_outs = self.drl.batch_act(obs)
-        acts = [self.map_drlout_to_action(obs, out,s,d,bandwidth) for obs, out in zip(batch_obs, drl_outs)]
-        return acts
+        acts, p = [self.map_drlout_to_action(obs, out,s,d,bandwidth) for obs, out in zip(batch_obs, drl_outs)]
+        return acts, p
 
