@@ -95,6 +95,12 @@ class KSPDRLAgent(KSPAgent):
 
         """
         raise NotImplementedError
+        
+    def getInfo(self, obs, drl_out):
+        """Mapping outputs of DRL agent to RSA actions
+
+        """
+        raise NotImplementedError
 
     def observe(self, obs, reward, done, reset):
         self.batch_observe([obs], [reward], [done], [reset])
@@ -110,5 +116,6 @@ class KSPDRLAgent(KSPAgent):
         obs = [self.preprocess(o) for o in batch_obs]
         drl_outs = self.drl.batch_act(obs)
         acts, p = [self.map_drlout_to_action(obs, out,s,d,bandwidth) for obs, out in zip(batch_obs, drl_outs)]
+        p = [self.getInfo(obs, out,s,d,bandwidth) for obs, out in zip(batch_obs, drl_outs)]
         return acts, p
 
