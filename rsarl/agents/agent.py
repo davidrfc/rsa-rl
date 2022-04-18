@@ -90,13 +90,13 @@ class KSPDRLAgent(KSPAgent):
         """
         raise NotImplementedError
 
-    def map_drlout_to_action(self, obs, drl_out):
+    def map_drlout_to_action(self, obs, drl_out,s,d,bandwidth):
         """Mapping outputs of DRL agent to RSA actions
 
         """
         raise NotImplementedError
         
-    def getInfo(self, obs, drl_out):
+    def getInfo(self, obs, drl_out,s,d,bandwidth):
         """Mapping outputs of DRL agent to RSA actions
 
         """
