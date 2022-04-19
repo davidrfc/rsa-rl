@@ -84,7 +84,7 @@ class KSPDRLAgent(KSPAgent):
         super().__init__(k)
         self.drl = drl
 
-    def preprocess(self, obs):
+    def preprocess(self, obs,s,d,bandwidth):
         """Convert observation(net, request) to feature vector
 
         """
