@@ -105,8 +105,8 @@ class KSPDRLAgent(KSPAgent):
     def observe(self, obs, reward, done, reset):
         self.batch_observe([obs], [reward], [done], [reset])
     
-    def batch_observe(self, batch_obs, batch_reward, batch_done, batch_reset):
-        obs = [self.preprocess(o) for o in batch_obs]
+    def batch_observe(self, batch_obs, batch_reward, batch_done, batch_reset,s,d,bandwidth):
+        obs = [self.preprocess(o,s,d,bandwidth) for o in batch_obs]
         self.drl.batch_observe(obs, batch_reward, batch_done, batch_reset)
 
     def act(self, obs):
