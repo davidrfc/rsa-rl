@@ -113,7 +113,7 @@ class SingleFiberNetwork(Network):
         for e in edges:
             path_slot = path_slot & bitarray(slot_dict[e])
 
-        return path_slot
+        return path_slot, slot_dict
 
 
     def adj_path_slot(self, path:list):
